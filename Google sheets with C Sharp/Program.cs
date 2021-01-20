@@ -54,6 +54,8 @@ namespace Google_sheets_with_C_Sharp
 
             while(true)
             {
+                Console.WriteLine("  Toggle fullscreen for better experience!!");
+                Console.WriteLine();
                 Console.WriteLine("1. Read data from google sheet and store it in the database.");
                 Console.WriteLine("2. Show the data from database.");
                 Console.WriteLine("3. Remove all data from the database.");
