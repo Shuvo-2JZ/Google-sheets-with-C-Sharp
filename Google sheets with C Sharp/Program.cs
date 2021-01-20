@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+
 using System.IO;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Sheets.v4;
+
+using System.Data.SQLite;
 
 namespace Google_sheets_with_C_Sharp
 {
@@ -48,6 +50,8 @@ namespace Google_sheets_with_C_Sharp
             var response = request.Execute();
             var values = response.Values;
 
+            Database databaseObject = new Database();
+
             while(true)
             {
                 Console.WriteLine("1. Read data from google sheet and store it in the database.");
@@ -65,9 +69,9 @@ namespace Google_sheets_with_C_Sharp
 
                 if(choice == 1)
                 {
-                    SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "C:\\Users\\shuvo\\source\\repos\\Google sheets with C Sharp\\Google sheets with C Sharp\\Test.mdf" + ";Integrated Security=True");
+                    databaseObject.myConnection.Open();
 
-                    cn.Open();
+                    
 
                     int numberOfRows = 0;
 
@@ -75,25 +79,27 @@ namespace Google_sheets_with_C_Sharp
                     {
                         foreach (var row in values)
                         {
-                            SqlCommand mycommand = new SqlCommand("INSERT INTO Mar_2016 VALUES(@Date, @Status, @Tahsinur_Refat_Emon, @Niger, @Nishu, @Asifuzzaman, @Sanjoy)", cn);
+                            string query = "INSERT INTO Mar_2016 (`Date`,`Status`,`Tahsinur_Refat_Emon`,`Niger`,`Nishu`,`Asifuzzaman`,`Sanjoy`) VALUES(@Date, @Status, @Tahsinur_Refat_Emon, @Niger, @Nishu, @Asifuzzaman, @Sanjoy)";
 
-                            mycommand.Parameters.AddWithValue("@Date", row[0]);
-                            mycommand.Parameters.AddWithValue("@Status", row[1]);
-                            mycommand.Parameters.AddWithValue("@Tahsinur_Refat_Emon", row[2]);
-                            mycommand.Parameters.AddWithValue("@Niger", row[3]);
-                            mycommand.Parameters.AddWithValue("@Nishu", row[4]);
-                            mycommand.Parameters.AddWithValue("@Asifuzzaman", row[5]);
+                            SQLiteCommand myCommand = new SQLiteCommand(query, databaseObject.myConnection);
+
+                            myCommand.Parameters.AddWithValue("@Date", row[0]);
+                            myCommand.Parameters.AddWithValue("@Status", row[1]);
+                            myCommand.Parameters.AddWithValue("@Tahsinur_Refat_Emon", row[2]);
+                            myCommand.Parameters.AddWithValue("@Niger", row[3]);
+                            myCommand.Parameters.AddWithValue("@Nishu", row[4]);
+                            myCommand.Parameters.AddWithValue("@Asifuzzaman", row[5]);
 
                             if(row.Count < 7)
                             {
-                                mycommand.Parameters.AddWithValue("@Sanjoy", "NULL");
+                                myCommand.Parameters.AddWithValue("@Sanjoy", "NULL");
                             }
                             else
                             {
-                                mycommand.Parameters.AddWithValue("@Sanjoy", row[6]);
+                                myCommand.Parameters.AddWithValue("@Sanjoy", row[6]);
                             }
 
-                            numberOfRows = mycommand.ExecuteNonQuery();
+                            numberOfRows = myCommand.ExecuteNonQuery();
                         }
                     }
                     else
@@ -106,7 +112,7 @@ namespace Google_sheets_with_C_Sharp
                         Console.WriteLine("Insertion successful.");
                     }
 
-                    cn.Close();
+                    databaseObject.myConnection.Close();
 
                     Console.WriteLine();
                     Console.WriteLine();
@@ -114,16 +120,14 @@ namespace Google_sheets_with_C_Sharp
 
                 if(choice == 2)
                 {
-                    SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "C:\\Users\\shuvo\\source\\repos\\Google sheets with C Sharp\\Google sheets with C Sharp\\Test.mdf" + ";Integrated Security=True");
-
-                    cn.Open();
+                    databaseObject.myConnection.Open();
 
 
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM Mar_2016", cn);
+                    SQLiteDataAdapter sQLiteDataAdapter = new SQLiteDataAdapter("SELECT * FROM Mar_2016", databaseObject.myConnection);
 
                     DataTable dataTable = new DataTable();
 
-                    sqlDataAdapter.Fill(dataTable);
+                    sQLiteDataAdapter.Fill(dataTable);
 
                     Console.WriteLine();
 
@@ -157,24 +161,23 @@ namespace Google_sheets_with_C_Sharp
                     Console.WriteLine();
                     Console.WriteLine();
 
-                    cn.Close();
+                    databaseObject.myConnection.Close();
                 }
 
                 if(choice == 3)
                 {
-                    SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "C:\\Users\\shuvo\\source\\repos\\Google sheets with C Sharp\\Google sheets with C Sharp\\Test.mdf" + ";Integrated Security=True");
+                    databaseObject.myConnection.Open();
 
-                    cn.Open();
-
-                    SqlCommand mycommand = new SqlCommand("DELETE FROM Mar_2016", cn);
-                    mycommand.ExecuteNonQuery();
+                    string query = "DELETE FROM Mar_2016";
+                    SQLiteCommand myCommand = new SQLiteCommand(query, databaseObject.myConnection);
+                    myCommand.ExecuteNonQuery();
 
                     Console.WriteLine("Deletion successful.");
 
                     Console.WriteLine();
                     Console.WriteLine();
 
-                    cn.Close();
+                    databaseObject.myConnection.Close();
                 }
 
                 if(choice == 4)

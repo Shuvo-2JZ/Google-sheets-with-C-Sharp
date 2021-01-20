@@ -22,5 +22,11 @@ C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Shar
 C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\Google.Apis.Auth.xml
 C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\Google.Apis.Sheets.v4.pdb
 C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\Google.Apis.Sheets.v4.xml
-C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\Test.mdf
-C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\Test_log.ldf
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\EntityFramework.dll
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\System.Data.SQLite.dll
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\EntityFramework.xml
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\shuvo\source\repos\Google sheets with C Sharp\Google sheets with C Sharp\bin\Debug\System.Data.SQLite.xml
