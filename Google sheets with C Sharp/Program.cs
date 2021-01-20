@@ -61,7 +61,7 @@ namespace Google_sheets_with_C_Sharp
 
                 Console.WriteLine();
 
-                Console.WriteLine("Enter Choice: ");
+                Console.WriteLine("Enter Options (1 to 4): ");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
 
