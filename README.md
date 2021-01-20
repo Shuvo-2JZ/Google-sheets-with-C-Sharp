@@ -17,7 +17,7 @@ Clone/Download Zip
 Open Visualt Studio
 ```
 ```
-Open the Google sheets with C Sharp.sln with Visual Studio
+Open the "Google sheets with C Sharp.sln" with Visual Studio
 ```
 ```
 Start the program
